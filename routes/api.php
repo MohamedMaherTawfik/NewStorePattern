@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\categoreyController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\admin\marketPlaceController;
 use App\Http\Controllers\admin\productController;
+use App\Http\Controllers\orders\cartController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -49,4 +50,11 @@ Route::controller(productController::class)->group(function ($router) {
     Route::post('/product', 'store');
     Route::post('/product/{id}', 'update');
     Route::delete('/product/{id}', 'destroy');
+});
+
+Route::controller(cartController::class)->group(function ($router) {
+    Route::post('/cart', 'add_to_cart');
+    Route::get('/cart', 'get_cart');
+    Route::delete('/cart', 'remove_from_cart');
+    Route::delete('/cart', 'clear_cart');
 });
