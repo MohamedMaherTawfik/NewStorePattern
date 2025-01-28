@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\admin\marketPlaceController;
 use App\Http\Controllers\admin\productController;
 use App\Http\Controllers\orders\cartController;
+use App\Http\Controllers\orders\OrderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,4 +58,14 @@ Route::controller(cartController::class)->group(function ($router) {
     Route::get('/cart', 'get_cart');
     Route::delete('/cart', 'remove_from_cart');
     Route::delete('/cart', 'clear_cart');
+});
+
+
+Route::controller(OrderController::class)->group(function ($router) {
+    Route::post('/order', 'create_order');
+    Route::get('/orders', 'get_user_orders');
+    Route::get('/orders', 'all_orders');
+    Route::get('/order/{id}', 'get_order');
+    Route::post('/order/{id}', 'change_order_status');
+    Route::delete('/order/{id}', 'delete_order');
 });
