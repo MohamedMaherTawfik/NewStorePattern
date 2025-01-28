@@ -31,4 +31,9 @@ class products extends Model
     {
         return $this->belongsTo(marketplace::class);
     }
+
+    public function carts()
+    {
+        return $this->belongsToMany(cart::class, 'cart_products');
+    }
 }
